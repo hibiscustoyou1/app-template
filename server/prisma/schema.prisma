@@ -1,0 +1,17 @@
+generator client {
+  provider      = "prisma-client-js"
+  // 显式指定 OpenSSL 3.0 的 Alpine 版本
+  // "native" 保证本地(Mac/Win)运行，"linux-musl-openssl-3.0.x" 保证 Node 20/22 Alpine 能跑
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Temp {
+  id        Int      @id @default(autoincrement())
+  value     String
+  createdAt DateTime @default(now())
+}

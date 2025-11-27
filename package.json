@@ -1,0 +1,13 @@
+{
+  "name": "app-template",
+  "version": "1.0.0",
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {},
+  "packageManager": "pnpm@10.21.0",
+  "pnpm": {
+    "overrides": {
+      "vite": "npm:rolldown-vite@7.2.5"
+    }
+  }
+}

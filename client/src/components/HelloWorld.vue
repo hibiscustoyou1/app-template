@@ -1,37 +1,3 @@
-<script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import axios from 'axios'
-
-// 定义响应式数据
-const message = ref('')
-const isLoading = ref(true)
-const error = ref(null)
-
-// 获取数据的函数
-const fetchData = async () => {
-  try {
-    isLoading.value = true
-    // 发起 GET 请求
-    const response = await axios.get('/api/hello')
-    // 假设返回结构为 { "message": "..." }
-    message.value = response.data.message
-  } catch (err) {
-    console.error(err)
-    error.value = '无法连接到服务器，请稍后再试。'
-  } finally {
-    // 模拟一个小延迟，防止加载动画一闪而过（可选）
-    setTimeout(() => {
-      isLoading.value = false
-    }, 500)
-  }
-}
-
-// 组件挂载时调用
-onMounted(() => {
-  fetchData()
-})
-</script>
-
 <template>
   <div class="min-h-screen flex items-center justify-center bg-slate-50 text-slate-800 p-6">
     
@@ -72,6 +38,40 @@ onMounted(() => {
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+  import { ref, onMounted } from 'vue'
+  import axios from 'axios'
+
+  // 定义响应式数据
+  const message = ref('')
+  const isLoading = ref(true)
+  const error = ref<string | null>(null)
+
+  // 获取数据的函数
+  const fetchData = async () => {
+    try {
+      isLoading.value = true
+      // 发起 GET 请求
+      const response = await axios.get('/api/hello')
+      // 假设返回结构为 { "message": "..." }
+      message.value = response.data.message
+    } catch (err) {
+      console.error(err)
+      error.value = '无法连接到服务器，请稍后再试。'
+    } finally {
+      // 模拟一个小延迟，防止加载动画一闪而过（可选）
+      setTimeout(() => {
+        isLoading.value = false
+      }, 500)
+    }
+  }
+
+  // 组件挂载时调用
+  onMounted(() => {
+    fetchData()
+  })
+</script>
 
 <style>
 /* 简单的淡入上浮动画 */

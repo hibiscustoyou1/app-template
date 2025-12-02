@@ -8,7 +8,7 @@
     "build": "pnpm prisma:dep && pnpm esbuild && pnpm cp-dep",
     "esbuild": "npx esbuild src/index.ts --bundle --platform=node --target=node22 --format=cjs --outfile=./dist/index.js",
     "prisma:dep": "npx prisma generate",
-    "cp-dep": "cp -f .env ./dist && cp -f prisma/schema.prisma ./dist && cp -f ../node_modules/.pnpm/@prisma+client@5.22.0_prisma@5.22.0/node_modules/.prisma/client/libquery_engine-*.so.node ./dist"
+    "cp-dep": "cp -f .env.example ./dist/.env && cp -f prisma/schema.prisma ./dist && cp -f ../node_modules/.pnpm/@prisma+client@5.22.0_prisma@5.22.0/node_modules/.prisma/client/libquery_engine-*.so.node ./dist"
   },
   "keywords": [],
   "author": "",

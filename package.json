@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "install:all": "pnpm i -r",
+    "dev": "pnpm --filter server dev & pnpm --filter client dev",
     "build:client": "cd client && pnpm build",
     "build:server": "cd server && pnpm build",
     "clean": "rm -rf dist",

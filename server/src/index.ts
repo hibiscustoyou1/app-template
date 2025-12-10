@@ -5,9 +5,11 @@ import path from 'path';
 import fs from 'fs';
 import dotenv from 'dotenv';
 import helloRoutes from './routes/wageRoutes';
+import { PROJECT_ROOT } from './constants/path';
+import { resolveClientPath } from './utils/path';
 
 const app = express();
-dotenv.config();
+dotenv.config({ path: path.resolve(PROJECT_ROOT, '.env') });
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
@@ -26,30 +28,6 @@ app.post('/api/verify', (req, res) => {
 // 1. API 路由 (必须在静态文件托管之前)
 app.use('/api', helloRoutes);
 
-// 目标：找到前端构建产物 (client/dist 或 dist/client)
-const resolveClientPath = () => {
-  // 场景 A: 生产环境/编译后 (dist/server/index.js) -> 找同级的 ../client
-  // 此时 __dirname 是 .../dist/server
-  const prodPath = path.join(__dirname, '../client');
-  
-  // 场景 B: 本地开发 (server/src/index.ts) -> 找外层的 ../../client/dist
-  // 此时 __dirname 是 .../server/src
-  const devPath = path.join(__dirname, '../../client/dist');
-  
-  // 优先判断生产环境路径是否存在
-  if (fs.existsSync(prodPath)) {
-    return prodPath;
-  }
-  
-  // 如果生产路径不存在，尝试开发路径
-  if (fs.existsSync(devPath)) {
-    return devPath;
-  }
-  
-  // 都没找到，返回 null (稍后报错提示)
-  return null;
-};
-
 const clientDistPath = resolveClientPath();
 
 if (clientDistPath) {
@@ -59,16 +37,17 @@ if (clientDistPath) {
   app.use(express.static(clientDistPath));
   
   // 3. SPA 页面回退 (Catch-all route)
-  app.get(/.*/, (req, res) => {
+  app.get(/.*/, (_, res) => {
     res.sendFile(path.join(clientDistPath, 'index.html'));
   });
   
 } else {
   console.warn('⚠️ 警告: 未找到前端构建产物 (client/dist)。');
-  console.warn('    - 如果是本地开发，请先在 client 目录下运行 npm run build');
-  console.warn('    - API 接口依然可用，但访问主页将无法显示');
+  console.warn('   - 如果是本地开发，请先在 client 目录下运行 npm run build');
+  console.warn('   - API 接口依然可用，但访问主页将无法显示');
 }
 
 app.listen(PORT, () => {
+  console.log('env path:', path.resolve(PROJECT_ROOT, '.env'));
   console.log(`🚀 服务已启动: http://localhost:${PORT}`);
 });

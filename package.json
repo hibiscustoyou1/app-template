@@ -8,7 +8,7 @@
     "clean": "rm -rf dist",
     "prebuild": "pnpm clean",
     "build": "pnpm prebuild && pnpm build:client && pnpm build:server && pnpm move:dist",
-    "move:dist": "mkdir -p dist && mv client/dist dist/client && mv server/dist dist/server",
+    "move:dist": "mkdir -p dist && cp .env dist/.env && mv client/dist dist/client && mv server/dist dist/server",
     "start": "node dist/server/index.js"
   },
   "packageManager": "pnpm@10.21.0",

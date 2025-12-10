@@ -1,4 +1,3 @@
-// server/src/controllers/wageController.ts
 import { Request, Response } from 'express';
 
 export const getHello = async (req: Request, res: Response) => {

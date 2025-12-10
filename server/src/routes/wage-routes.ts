@@ -1,6 +1,5 @@
-// server/src/routes/wageRoutes.ts
 import { Router } from 'express';
-import { getHello } from '../controllers/helloController'; 
+import { getHello } from '../controllers/hello-controller'; 
 
 const router = Router();
 

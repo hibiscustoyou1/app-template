@@ -4,7 +4,7 @@ import cors from 'cors';
 import path from 'path';
 import fs from 'fs';
 import dotenv from 'dotenv';
-import helloRoutes from './routes/wageRoutes';
+import helloRoutes from './routes/wage-routes';
 import { PROJECT_ROOT } from './constants/path';
 import { resolveClientPath } from './utils/path';
 

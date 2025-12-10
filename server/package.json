@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.ts",
+    "dev": "nodemon -r tsconfig-paths/register src/index.ts",
     "build": "pnpm prisma:dep && pnpm esbuild && pnpm cp-dep",
     "esbuild": "npx esbuild src/index.ts --bundle --platform=node --target=node22 --format=cjs --outfile=./dist/index.js",
     "cp-dep": "cp -f prisma/schema.prisma ./dist && cp -f ../node_modules/.pnpm/@prisma+client@5.22.0_prisma@5.22.0/node_modules/.prisma/client/libquery_engine-*.so.node ./dist",
@@ -29,6 +29,7 @@
     "nodemon": "^3.1.11",
     "prisma": "^5.22.0",
     "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.9.3"
   }
 }

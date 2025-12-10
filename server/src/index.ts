@@ -2,11 +2,10 @@
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
-import fs from 'fs';
 import dotenv from 'dotenv';
-import helloRoutes from './routes/wage-routes';
-import { PROJECT_ROOT } from './constants/path';
-import { resolveClientPath } from './utils/path';
+import helloRoutes from '@/routes/wage-routes';
+import { PROJECT_ROOT } from '@/constants/path';
+import { resolveClientPath } from '@/utils/path';
 
 const app = express();
 dotenv.config({ path: path.resolve(PROJECT_ROOT, '.env') });

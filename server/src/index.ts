@@ -3,7 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import dotenv from 'dotenv';
-import helloRoutes from '@/routes/wage-routes';
+import routes from '@/routes'; // [修改] 引入 routes/index.ts
 import { PROJECT_ROOT } from '@/constants/path';
 import { resolveClientPath } from '@/utils/path';
 
@@ -24,8 +24,8 @@ app.post('/api/verify', (req, res) => {
   }
 });
 
-// 1. API 路由 (必须在静态文件托管之前)
-app.use('/api', helloRoutes);
+// 1. API 路由 (使用自动导入的路由)
+app.use('/api', routes);
 
 const clientDistPath = resolveClientPath();
 

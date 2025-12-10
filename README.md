@@ -32,7 +32,7 @@ myapp
 
 在开始之前，请确保您的开发环境中已安装以下工具：
 
-* **Node.js** (推荐 >= 18.x)
+* **Node.js** (推荐 >= 20)
 * **PNPM** (必须安装，本项目依赖 workspaces 功能)
 
 如果您尚未安装 PNPM，请运行：
@@ -60,8 +60,6 @@ npm install -g pnpm
 3.  **配置环境 (推荐)**
     > ⚠️ **注意**：由于后端使用了 Prisma，建议在启动前配置数据库连接。
 
-    * 进入 `server/` 目录。
-    * 创建 `.env` 文件 (可参考 `.env.example`)。
     * 配置 `DATABASE_URL` (参考 `server/prisma/schema.prisma`)。
 
 4.  **构建项目**
@@ -80,7 +78,7 @@ npm install -g pnpm
 
 ## 🌐 访问应用
 
-启动成功后，请访问：[http://localhost:3000](http://localhost:3000)
+启动成功后，请访问：[http://localhost:30030](http://localhost:3030)
 
 > (注：后端 API 服务通常运行在不同端口，请检查 server 端的控制台输出)
 

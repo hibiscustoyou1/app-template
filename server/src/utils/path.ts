@@ -1,6 +1,6 @@
 import path from 'path';
 import fs from 'fs';
-import { PROJECT_ROOT } from '../constants/path';
+import { PROJECT_ROOT } from '@/constants/path';
 
 export const resolveClientPath = () => {
   const prodPath = path.join(PROJECT_ROOT, 'client');

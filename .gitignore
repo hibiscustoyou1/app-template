@@ -10,5 +10,7 @@
 *.log*
 
 **/node_modules
-server/.env
+.env
 **/dist
+apps/server/prisma/migrations
+apps/server/prisma/db

@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "strict": true,
+    "declaration": true,
+    "outDir": "./dist",
+
+    // ✅ 关键配置：允许从 CommonJS 模块进行默认导入
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+
+    // 确保包含 node 类型定义
+    "types": ["node"]
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}

@@ -3,7 +3,6 @@ import { getHello } from '@/controllers/hello.controller';
 
 const router = Router();
 
-// 定义 GET /hello 路由
-router.get('/hello', getHello);
+router.get('/', getHello);
 
-export default router;
+export const helloRouter = router;

@@ -4,13 +4,16 @@
   "scripts": {
     "install:all": "pnpm i -r",
     "dev": "pnpm --filter server dev & pnpm --filter client dev",
-    "build:client": "cd client && pnpm build",
-    "build:server": "cd server && pnpm build",
+    "build:app": "pnpm --filter './apps/*' --parallel build",
     "clean": "rm -rf dist",
-    "prebuild": "pnpm clean",
-    "build": "pnpm prebuild && pnpm build:client && pnpm build:server && pnpm move:dist",
-    "move:dist": "mkdir -p dist && cp .env dist/.env && mv client/dist dist/client && mv server/dist dist/server",
-    "start": "node dist/server/index.js"
+    "build": "pnpm clean && pnpm build:app && pnpm move:dist",
+    "move:dist": "mkdir -p dist && cp .env dist/.env && mv apps/client/dist dist/client && mv apps/server/dist dist/server",
+    "start": "node dist/server/index.js",
+    "db:migrate": "dotenv -e .env -- pnpm --filter server prisma:migrate",
+    "db:gen": "dotenv -e .env -- pnpm --filter server prisma:gen"
+  },
+  "devDependencies": {
+    "dotenv-cli": "^11.0.0"
   },
   "packageManager": "pnpm@10.21.0",
   "pnpm": {

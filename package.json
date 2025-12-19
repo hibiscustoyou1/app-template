@@ -3,17 +3,22 @@
   "version": "1.0.0",
   "scripts": {
     "install:all": "pnpm i -r",
-    "dev": "pnpm --filter server dev & pnpm --filter client dev",
+    "dev": "pnpm vault:dec && pnpm --filter './apps/*' --parallel dev",
     "build:app": "pnpm --filter './apps/*' --parallel build",
     "clean": "rm -rf dist",
     "build": "pnpm clean && pnpm build:app && pnpm move:dist",
     "move:dist": "mkdir -p dist && cp .env dist/.env && mv apps/client/dist dist/client && mv apps/server/dist dist/server",
-    "start": "node dist/server/index.js",
+    "start": "pnpm vault:dec && node dist/server/index.js",
     "db:migrate": "dotenv -e .env -- pnpm --filter server prisma:migrate",
-    "db:gen": "dotenv -e .env -- pnpm --filter server prisma:gen"
+    "db:gen": "dotenv -e .env -- pnpm --filter server prisma:gen",
+    "vault:enc": "tsx scripts/vault.ts encrypt",
+    "vault:dec": "tsx scripts/vault.ts decrypt"
   },
   "devDependencies": {
-    "dotenv-cli": "^11.0.0"
+    "@repo/shared": "workspace:*",
+    "@types/node": "^24.10.1",
+    "dotenv-cli": "^11.0.0",
+    "tsx": "^4.21.0"
   },
   "packageManager": "pnpm@10.21.0",
   "pnpm": {

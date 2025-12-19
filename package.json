@@ -2,7 +2,7 @@
   "name": "app-template",
   "version": "1.0.0",
   "scripts": {
-    "install:all": "pnpm i -r",
+    "install:all": "pnpm i -r && pnpm --filter @repo/shared build",
     "dev": "pnpm vault:dec && pnpm --filter './apps/*' --parallel dev",
     "build:app": "pnpm --filter './apps/*' --parallel build",
     "clean": "rm -rf dist",

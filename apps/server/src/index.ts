@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import dotenv from 'dotenv';
-import routes from '@/routes';
+import { initRoutes } from '@/routes';
 import { PROJECT_ROOT, resolveClientPath } from '@repo/shared';
 
 const app = express();
@@ -12,14 +12,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-app.use('/', routes);
-app.all(/^\/api\/.*$/, (req, res) => {
-  console.warn(`⚠️ API 404: ${req.path}`);
-  res.status(404).json({
-    success: false,
-    error: '未找到API端点'
-  });
-});
+initRoutes(app)
 
 const clientDistPath = resolveClientPath();
 console.log(`📂 静态资源托管路径: ${clientDistPath}`);

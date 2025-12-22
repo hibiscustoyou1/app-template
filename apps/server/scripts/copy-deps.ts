@@ -25,39 +25,35 @@ function copyFile(src: string, dest: string): void {
 }
 
 function main() {
-  console.log('📦 Starting dependency copy...');
+  console.log('📦 开始复制依赖...');
   
-  // 1. 确保 dist 目录存在
   ensureDir(distDir);
   
-  // 2. 复制 schema.prisma
   if (fs.existsSync(prismaSchema)) {
-    console.log('📄 Copying schema.prisma...');
+    console.log('📄 复制 schema.prisma...');
     copyFile(prismaSchema, path.join(distDir, 'schema.prisma'));
   } else {
-    console.warn('⚠️  schema.prisma not found!');
+    console.warn('⚠️  schema.prisma 未找到!');
   }
   
-  // 3. 自动寻找并复制 Prisma 引擎
   try {
     
     let prismaClientDir = path.join(PROJECT_ROOT, 'node_modules/.pnpm/@prisma+client@5.22.0_prisma@5.22.0/node_modules/.prisma/client');
     
     if (!prismaClientDir) {
-      throw new Error(`Cannot find .prisma/client directory.`);
+      throw new Error(`未找到 .prisma/client 目录.`);
     }
     
-    console.log(`🔍 Found Prisma Client at: ${prismaClientDir}`);
+    console.log(`🔍 Prisma Client 目录路径: ${prismaClientDir}`);
     
     const files = fs.readdirSync(prismaClientDir);
-    
-    // 过滤出引擎文件 (.node)
+
     const engineFiles = files.filter(f =>
       f.startsWith('libquery_engine') && f.endsWith('.node')
     );
     
     if (engineFiles.length === 0) {
-      console.warn('⚠️  No engine files found in the target directory.');
+      console.warn('⚠️ 目标目录中找不到引擎文件.');
     }
     
     engineFiles.forEach(file => {
@@ -67,10 +63,10 @@ function main() {
       );
     });
     
-    console.log('✅ Dependencies copied successfully!');
+    console.log('✅ 依赖复制成功!');
     
   } catch (error) {
-    console.error('❌ Error locating Prisma Client:', error);
+    console.error('❌ Prisma Client 错误定位:', error);
     console.error('💡 Hint: Run "pnpm prisma:gen" first.');
     process.exit(1);
   }

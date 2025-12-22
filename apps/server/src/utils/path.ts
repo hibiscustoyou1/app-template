@@ -15,7 +15,5 @@ export const resolveClientPath = () => {
   if (!isDev && fs.existsSync(prodPath)) {
     return prodPath;
   }
-  
-  // 都没找到，返回 null (稍后报错提示)
   return null;
 };

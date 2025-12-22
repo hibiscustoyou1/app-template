@@ -4,7 +4,6 @@ import { helloRouter } from './hello.routes';
 
 const routes = Router();
 
-routes.use('/hello', helloRouter);
+routes.use('/api', helloRouter);
 
-// ✅ 3. 导出总路由
 export default routes;

@@ -12,23 +12,12 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// [新增] 验证接口 (用于前端登录页检测密码是否正确)
-app.post('/api/verify', (req, res) => {
-  const { key } = req.body;
-  if (key === process.env.ACCESS_KEY) {
-    res.json({ success: true });
-  } else {
-    res.status(401).json({ success: false });
-  }
-});
-
-// 1. API 路由 (使用自动导入的路由)
-app.use('/api', routes);
+app.use('/', routes);
 app.all(/^\/api\/.*$/, (req, res) => {
   console.warn(`⚠️ API 404: ${req.path}`);
   res.status(404).json({
     success: false,
-    error: 'API Endpoint Not Found'
+    error: '未找到API端点'
   });
 });
 

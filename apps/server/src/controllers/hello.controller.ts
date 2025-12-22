@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-// [重构] 引入共享类型
 import { ApiResponse, HelloData } from '@repo/shared';
 
 export const getHello = async (req: Request, res: Response<ApiResponse<HelloData>>) => {

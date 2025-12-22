@@ -41,7 +41,7 @@
 
 <script setup lang="ts">
   import { ref, onMounted } from 'vue'
-  import axios from 'axios'
+  import api from '@/api'
 
   const message = ref('')
   const isLoading = ref(true)
@@ -50,7 +50,7 @@
   const fetchData = async () => {
     try {
       isLoading.value = true
-      const response = await axios.get('/api/hello')
+      const response = await api.get('/hello')
       message.value = response.data.data.message
     } catch (err) {
       console.error(err)

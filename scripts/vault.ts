@@ -1,16 +1,16 @@
 import * as fs from 'fs';
 import * as crypto from 'crypto';
 import * as path from 'path';
-import { PROJECT_ROOT } from '@repo/shared';
+import { PROJECT_ROOT_FOR_SERVER } from '@repo/shared/server';
 
 const ALGORITHM: string = 'aes-256-cbc';
-// ⚠️ 生产环境建议通过环境变量注入
+
 const PASSWORD = process.env.VAULT_PASS || 'default';
-const SALT = 'salty-string-for-app-template';
+const SALT = process.env.VAULT_SALT || 'bWeiWDslMrj$#$Zfk~If';
 
 // 定义文件路径
-const envPath = path.resolve(PROJECT_ROOT, '.env');
-const encPath = path.resolve(PROJECT_ROOT, '.env.enc');
+const envPath = path.resolve(PROJECT_ROOT_FOR_SERVER, '.env');
+const encPath = path.resolve(PROJECT_ROOT_FOR_SERVER, '.env.enc');
 
 /**
  * 从密码派生 Key 和 IV

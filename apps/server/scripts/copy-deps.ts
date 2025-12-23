@@ -1,6 +1,6 @@
 import  fs from 'fs';
 import path from 'path';
-import { PROJECT_ROOT } from "@repo/shared";
+import { PROJECT_ROOT_FOR_SERVER } from "@repo/shared/server";
 
 // 定义路径
 const distDir: string = path.resolve(__dirname, '../dist');
@@ -38,7 +38,7 @@ function main() {
   
   try {
     
-    let prismaClientDir = path.join(PROJECT_ROOT, 'node_modules/.pnpm/@prisma+client@5.22.0_prisma@5.22.0/node_modules/.prisma/client');
+    let prismaClientDir = path.join(PROJECT_ROOT_FOR_SERVER, 'node_modules/.pnpm/@prisma+client@5.22.0_prisma@5.22.0/node_modules/.prisma/client');
     
     if (!prismaClientDir) {
       throw new Error(`未找到 .prisma/client 目录.`);

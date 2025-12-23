@@ -3,8 +3,8 @@
   "compilerOptions": {
     "outDir": "./dist",
     "declaration": true,
-    // 允许从 CommonJS 模块导入 (继承自 base/node，但此处可显式保留以防万一)
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "module": "esnext"
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]

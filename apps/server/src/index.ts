@@ -3,10 +3,10 @@ import cors from 'cors';
 import path from 'path';
 import dotenv from 'dotenv';
 import { initRoutes } from '@/routes';
-import { PROJECT_ROOT, resolveClientPath } from '@repo/shared';
+import { PROJECT_ROOT_FOR_SERVER, CLIENT_DIST_PATH } from '@repo/shared/server';
 
 const app = express();
-dotenv.config({ path: path.resolve(PROJECT_ROOT, '.env') });
+dotenv.config({ path: path.resolve(PROJECT_ROOT_FOR_SERVER, '.env') });
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
@@ -14,7 +14,7 @@ app.use(express.json());
 
 initRoutes(app)
 
-const clientDistPath = resolveClientPath();
+const clientDistPath = CLIENT_DIST_PATH;
 console.log(`📂 静态资源托管路径: ${clientDistPath}`);
 
 if (clientDistPath) {
@@ -31,6 +31,6 @@ if (clientDistPath) {
 }
 
 app.listen(PORT, () => {
-  console.log('env path:', path.resolve(PROJECT_ROOT, '.env'));
+  console.log('env path:', path.resolve(PROJECT_ROOT_FOR_SERVER, '.env'));
   console.log(`🚀 服务已启动: http://localhost:${PORT}`);
 });

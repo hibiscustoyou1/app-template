@@ -10,7 +10,7 @@ import fs from 'fs';
 export function findProjectRoot(startDir: string): string {
   // --- 策略 1: 生产环境快速匹配 (Dist Mode) ---
   const parentDir = path.resolve(startDir, '..');
-  const envInParent = path.join(parentDir, '.env');
+  const envInParent = path.join(parentDir, '.env.enc');
   
   if (fs.existsSync(envInParent)) {
     return parentDir;
@@ -34,17 +34,12 @@ export function findProjectRoot(startDir: string): string {
  * 查找 Client 构建产物路径
  */
 export const resolveClientPath = (rootPath: string): string | null => {
-  // 1. Prod: dist/client
-  const prodClient = path.join(rootPath, 'client');
-  if (fs.existsSync(prodClient) && fs.existsSync(path.join(prodClient, 'index.html'))) {
-    return prodClient;
+  const possibleDist = ['dist/client', 'client']
+  for (const dist of possibleDist) {
+    const prodClient = path.join(rootPath, dist);
+    if (fs.existsSync(prodClient) && fs.existsSync(path.join(prodClient, 'index.html'))) {
+      return prodClient;
+    }
   }
-  
-  // 2. Dev: apps/client/dist
-  const devClient = path.join(rootPath, 'apps', 'client', 'dist');
-  if (fs.existsSync(devClient)) {
-    return devClient;
-  }
-  
   return null;
 };

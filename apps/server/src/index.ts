@@ -4,12 +4,12 @@ import path from 'path';
 import dotenv from 'dotenv';
 import { initRoutes } from '@/routes';
 import { getServerPaths } from '@repo/shared/server';
+import { loadSecureEnv } from "@/utils/secure-env";
 
 const { PROJECT_ROOT, CLIENT_DIST_PATH } = getServerPaths(__dirname);
-console.log("🚀 ~  ~ PROJECT_ROOT: ", path.resolve(PROJECT_ROOT, '.env'));
+loadSecureEnv(PROJECT_ROOT);
 
 const app = express();
-dotenv.config({ path: path.resolve(PROJECT_ROOT, '.env') });
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());

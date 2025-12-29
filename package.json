@@ -8,8 +8,8 @@
     "build:shared": "pnpm --filter @repo/shared build",
     "clean": "rimraf dist apps/*/dist packages/*/dist",
     "build": "pnpm clean && pnpm build:app && pnpm move:dist",
-    "move:dist": "mkdir -p dist && cp .env.enc dist/.env.enc && mv apps/client/dist dist/client && mv apps/server/dist dist/server",
-    "start": "pnpm vault:dec && cd dist && node server/index.js",
+    "move:dist": "mkdir -p dist && cp .env.enc dist/.env.enc && cp scripts/vault.js dist/vault.js && mv apps/client/dist dist/client && mv apps/server/dist dist/server",
+    "start": "cd dist && node vault.js decrypt && node server/index.js",
     "db:migrate": "dotenv -e .env -- pnpm --filter server prisma:migrate",
     "db:gen": "dotenv -e .env -- pnpm --filter server prisma:gen",
     "vault:enc": "node scripts/vault.js encrypt",
@@ -19,6 +19,7 @@
     "@repo/shared": "workspace:*",
     "@types/node": "^24.10.1",
     "dotenv-cli": "^11.0.0",
+    "prisma": "^7.2.0",
     "rimraf": "^6.1.2"
   },
   "packageManager": "pnpm@10.21.0",

@@ -6,6 +6,7 @@ import { initRoutes } from '@/routes';
 import { getServerPaths } from '@repo/shared/server';
 
 const { PROJECT_ROOT, CLIENT_DIST_PATH } = getServerPaths(__dirname);
+console.log("🚀 ~  ~ PROJECT_ROOT: ", path.resolve(PROJECT_ROOT, '.env'));
 
 const app = express();
 dotenv.config({ path: path.resolve(PROJECT_ROOT, '.env') });

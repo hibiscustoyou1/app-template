@@ -11,6 +11,7 @@ export function findProjectRoot(startDir: string): string {
   // --- 策略 1: 生产环境快速匹配 (Dist Mode) ---
   const parentDir = path.resolve(startDir, '..');
   const envInParent = path.join(parentDir, '.env.enc');
+  console.log("🚀 ~ findProjectRoot ~ envInParent: ", envInParent);
   
   if (fs.existsSync(envInParent)) {
     return parentDir;

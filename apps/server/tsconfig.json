@@ -7,6 +7,13 @@
     },
     "outDir": "dist"
   },
-  "include": ["src/**/*", "scripts/**/*"],
+  // 修改这里：添加 tsup.config.ts 和其他根目录配置文件
+  "include": [
+    "src/**/*",
+    "scripts/**/*",
+    "tsup.config.ts",
+    "prisma.config.ts",  // 如果你之前添加了这个
+    "package.json"       // 让 TS 知道这个文件的存在（可选，通常加上比较保险）
+  ],
   "exclude": ["node_modules", "test-limit.ts"]
 }

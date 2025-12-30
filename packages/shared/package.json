@@ -36,6 +36,9 @@
     "build": "tsup src/index.ts src/server/index.ts src/client/index.ts --format cjs,esm --dts --shims",
     "dev": "tsup src/index.ts src/server/index.ts src/client/index.ts --format cjs,esm --dts --shims --watch"
   },
+  "dependencies": {
+    "dotenv": "^17.2.3"
+  },
   "devDependencies": {
     "@types/node": "^24.10.4",
     "@repo/tsconfig": "workspace:*",

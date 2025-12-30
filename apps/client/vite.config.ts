@@ -1,13 +1,13 @@
-import { defineConfig, loadEnv } from 'vite'
+import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
-import { getServerPaths } from '@repo/shared/server';
-
+import { getServerPaths, loadSecureEnv } from '@repo/shared/server';
 const { PROJECT_ROOT } = getServerPaths(__dirname);
 
+loadSecureEnv(PROJECT_ROOT);
+
 export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, PROJECT_ROOT, '');
-  const API_PORT = env.PORT || 3000;
+  const API_PORT = process.env.PORT || 3000;
   return {
     plugins: [vue()],
     resolve: {

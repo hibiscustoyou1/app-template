@@ -1,4 +1,5 @@
 import { findProjectRoot, resolveClientPath } from "../utils/path-tools";
+export * from "./secure-env";
 
 /**
  * 获取服务端相关的绝对路径

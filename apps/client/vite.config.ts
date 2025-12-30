@@ -6,7 +6,7 @@ const { PROJECT_ROOT } = getServerPaths(__dirname);
 
 loadSecureEnv(PROJECT_ROOT);
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(() => {
   const API_PORT = process.env.PORT || 3000;
   return {
     plugins: [vue()],
@@ -18,7 +18,6 @@ export default defineConfig(({ mode }) => {
     server: {
       host: '0.0.0.0',
       proxy: {
-        // API 接口
         '/api': {
           target: `http://localhost:${ API_PORT }`,
           changeOrigin: true,

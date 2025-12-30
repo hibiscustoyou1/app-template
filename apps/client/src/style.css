@@ -3,7 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 额外优化：让输入框占满屏幕且不显示默认的聚焦边框 */
 .no-outline:focus {
   outline: none;
 }

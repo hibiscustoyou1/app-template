@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-import { ApiResponse, HelloData } from '@repo/shared';
+import { ApiResponse, HelloData, ApiCode } from '@repo/shared';
 
-export const getHello = async (req: Request, res: Response<ApiResponse<HelloData>>) => {
+export const getHello = async (_req: Request, res: Response<ApiResponse<HelloData>>) => {
   try {
     res.json({
-      success: true,
+      code: ApiCode.SUCCESS,
       data: {
         message: "Hello, World from Monorepo!",
         timestamp: Date.now()
@@ -12,8 +12,8 @@ export const getHello = async (req: Request, res: Response<ApiResponse<HelloData
     });
   } catch (error) {
     res.status(500).json({
-      success: false,
-      error: '服务器错误'
+      code: ApiCode.FAIL,
+      msg: '服务器错误'
     });
   }
 };

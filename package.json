@@ -19,7 +19,6 @@
     "@repo/shared": "workspace:*",
     "@types/node": "^24.10.1",
     "dotenv-cli": "^11.0.0",
-    "prisma": "^7.2.0",
     "rimraf": "^6.1.2"
   },
   "packageManager": "pnpm@10.21.0",

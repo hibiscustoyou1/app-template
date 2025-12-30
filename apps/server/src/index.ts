@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import { initRoutes } from '@/routes';
-import { getServerPaths, loadSecureEnv } from '@repo/shared/server';
+import { getServerPaths, loadSecureEnv } from '@repo/shared/node';
 
 const { PROJECT_ROOT, CLIENT_DIST_PATH } = getServerPaths(__dirname);
 loadSecureEnv(PROJECT_ROOT);

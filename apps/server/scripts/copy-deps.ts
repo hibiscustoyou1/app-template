@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { getServerPaths } from "@repo/shared/server";
+import { getServerPaths } from "../../../packages/shared/src/node";
 
 const { PROJECT_ROOT } = getServerPaths(__dirname);
 

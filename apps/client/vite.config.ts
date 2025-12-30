@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
-import { getServerPaths, loadSecureEnv } from '@repo/shared/server';
+import { getServerPaths, loadSecureEnv } from '@repo/shared/node';
 const { PROJECT_ROOT } = getServerPaths(__dirname);
 
 loadSecureEnv(PROJECT_ROOT);

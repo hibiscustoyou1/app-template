@@ -1,7 +1,6 @@
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
-import dotenv from 'dotenv';
 import { initRoutes } from '@/routes';
 import { getServerPaths } from '@repo/shared/server';
 import { loadSecureEnv } from "@/utils/secure-env";

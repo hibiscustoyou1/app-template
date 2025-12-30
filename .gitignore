@@ -14,3 +14,7 @@
 **/dist
 apps/server/prisma/migrations
 apps/server/prisma/db
+
+LICENSE
+README.md
+pnpm-lock.yaml

@@ -1,5 +1,7 @@
 FROM node:20-slim AS builder
 
+ARG VAULT_PASS
+ENV VAULT_PASS=${VAULT_PASS}
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
@@ -24,7 +26,6 @@ RUN pnpm build
 
 FROM node:20-slim
 
-# 安装 Nginx
 RUN apt-get update && apt-get install -y nginx && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app

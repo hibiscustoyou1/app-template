@@ -8,5 +8,5 @@ export default defineConfig({
   target: 'node22',
   platform: 'node',
   clean: true,
-  noExternal: Object.keys(dependencies).filter(d => !d.includes('@prisma')),
+  noExternal: Object.keys(dependencies)
 })

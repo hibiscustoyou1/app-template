@@ -14,7 +14,7 @@
     "vault:dec": "node scripts/vault.js decrypt",
     "docker:build": "docker build --build-arg VAULT_PASS=$VAULT_PASS -t app-template .",
     "docker:stop": "docker rm -f app-template | true",
-    "docker:run": "pnpm docker:stop && docker run -d -p 3030:80 -e VAULT_PASS=$VAULT_PASS --name app-template app-template"
+    "docker:run": "pnpm docker:stop && docker run -d -p 8030:80 -e VAULT_PASS=$VAULT_PASS --name app-template app-template"
   },
   "devDependencies": {
     "@repo/shared": "workspace:*",
